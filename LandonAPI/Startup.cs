@@ -49,6 +49,11 @@ namespace LandonAPI
 
             // Register the Swagger services
             services.AddSwaggerDocument();
+
+            services.AddCors(options =>
+            {
+                options.AddPolicy("AllowMyApp", policy => policy.AllowAnyOrigin());
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -66,6 +71,7 @@ namespace LandonAPI
                 app.UseHsts();
             }
 
+            app.UseCors("AllowMyApp");
             app.UseMvc();
         }
     }
