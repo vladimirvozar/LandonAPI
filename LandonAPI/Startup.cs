@@ -16,6 +16,8 @@ using Microsoft.Extensions.Options;
 using NSwag.AspNetCore;
 using Microsoft.EntityFrameworkCore;
 using LandonAPI.Services;
+using AutoMapper;
+using LandonAPI.Infrastructure;
 
 namespace LandonAPI
 {
@@ -65,6 +67,8 @@ namespace LandonAPI
             {
                 options.AddPolicy("AllowMyApp", policy => policy.AllowAnyOrigin());
             });
+
+            services.AddAutoMapper(options => options.AddProfile<MappingProfile>(), AppDomain.CurrentDomain.GetAssemblies());
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
